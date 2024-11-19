@@ -171,7 +171,7 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(products[0].id, original_id)
 
 
-   def test_update_a_product_not_saved(self):
+    def test_update_a_product_not_saved(self):
 
         """It should fail when updating a product that was not saved to the database"""
 
