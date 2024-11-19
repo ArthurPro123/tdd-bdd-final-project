@@ -135,7 +135,8 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(found_product.description, product.description)
         self.assertEqual(found_product.price, product.price)
         assert found_product.available == True or found_product.available == False
-        assert found_product.category in range(0, len(Category))
+        #assert found_product.category in range(0, len(Category))
+        assert found_product.category in range(0, 6)
 
 
     def test_update_a_product(self):
