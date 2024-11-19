@@ -201,7 +201,7 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(len(products), 5)
 
 
-     def test_find_by_name(self):
+    def test_find_by_name(self):
 
         """It should Find a Product by Name"""
 
