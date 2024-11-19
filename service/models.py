@@ -58,6 +58,7 @@ class Category(Enum):
     HOUSEWARES = 3
     AUTOMOTIVE = 4
     TOOLS = 5
+    SOFTWARE = 6
 
 
 class Product(db.Model):
