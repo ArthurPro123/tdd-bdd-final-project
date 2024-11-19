@@ -48,5 +48,6 @@ class ProductFactory(factory.Factory):
             Category.HOUSEWARES,
             Category.AUTOMOTIVE,
             Category.TOOLS,
+            Category.SOFTWARE
         ]
     )
