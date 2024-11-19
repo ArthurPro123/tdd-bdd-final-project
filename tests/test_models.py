@@ -27,7 +27,7 @@ import os
 import logging
 import unittest
 from decimal import Decimal
-from service.models import Product, Category, db
+from service.models import Product, Category, db, DataValidationError
 from service import app
 from tests.factories import ProductFactory
 
@@ -169,6 +169,15 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(len(products), 1)
         self.assertEqual(products[0].description, "A new description")
         self.assertEqual(products[0].id, original_id)
+
+
+   def test_update_a_product_not_saved(self):
+
+        """It should fail when updating a product that was not saved to the database"""
+
+        product = ProductFactory()
+        product.id = None
+        self.assertRaises(DataValidationError, product.update)
 
 
     def test_delete_a_product(self):
