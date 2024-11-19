@@ -227,7 +227,7 @@ class TestProductModel(unittest.TestCase):
             self.assertEqual(product.name, name)
 
 
-      def test_find_by_availability(self):
+    def test_find_by_availability(self):
 
         """It should Find Products by Availability"""
 
@@ -253,7 +253,7 @@ class TestProductModel(unittest.TestCase):
             self.assertEqual(product.available, available)
 
 
-      def test_find_by_category(self):
+    def test_find_by_category(self):
 
         """It should Find Products by Category"""
 
