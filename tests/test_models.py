@@ -293,6 +293,7 @@ class TestProductModel(unittest.TestCase):
     def test_deserialize_a_product(self):
 
         """It should Deserialize a product and raise appropiate exceptions for missing fields"""
+
         saved_product = ProductFactory()
         saved_product.id = None
         saved_product.create()
@@ -317,3 +318,20 @@ class TestProductModel(unittest.TestCase):
         with self.assertRaises(DataValidationError):
             saved_product.deserialize(invalid_product)
         saved_product.deserialize(product)
+
+
+
+     def test_serialize_a_product(self):
+
+        """It should Serialize a product"""
+
+        saved_product = ProductFactory()
+        saved_product.id = None
+        saved_product.create()
+        product = Product.find(saved_product.id).serialize()
+        self.assertEqual(product['id'], saved_product.id)
+        self.assertEqual(product['name'], saved_product.name)
+        self.assertEqual(product['description'], saved_product.description)
+        self.assertEqual(Decimal(product['price']), Decimal(saved_product.price))
+        self.assertEqual(product['available'], saved_product.available)
+        self.assertEqual(product['category'], saved_product.category.name)
