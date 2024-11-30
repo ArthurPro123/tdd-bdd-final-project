@@ -334,7 +334,7 @@ class TestProductModel(unittest.TestCase):
             if count == 5:
                 product.price = price
             else:
-                product.price = 20.00 + index
+                product.price = 20.00 + count
             product.create()
             count += 1
 
