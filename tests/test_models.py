@@ -137,7 +137,6 @@ class TestProductModel(unittest.TestCase):
         # assert found_product.available == True or found_product.available == False
         # assert found_product.category in range(0, len(Category))
 
-
     def test_update_a_product(self):
 
         """It should Update a Product"""
@@ -152,7 +151,7 @@ class TestProductModel(unittest.TestCase):
 
         found_product = Product.find(product.id)
         app.logger.info(f"The information about the {found_product} product fetched from the database")
-        
+
         # Save the value of the product id in a local variable to use in assertions
         original_id = product.id
 
