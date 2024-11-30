@@ -93,6 +93,25 @@ def create_products():
     location_url = "/"  # delete once READ is implemented
     return jsonify(message), status.HTTP_201_CREATED, {"Location": location_url}
 
+    ######################################################################
+    # READ A PRODUCT
+    ######################################################################
+
+    @app.route("/products/<int:product_id>", methods=["GET"])
+    def get_products(product_id):
+        """
+        Retrieve a single Product
+
+        This endpoint will return a Product based on its id
+        """
+        app.logger.info("Request to Retrieve a product with id [%s]", product_id)
+
+        found_product = Product.find(product_id)
+        if not found_product:
+            abort(status.HTTP_404_NOT_FOUND, f"Product with id '{product_id}' was not found.")
+
+        app.logger.info("Returning product: %s", found_product.name)
+        return found_product.serialize(), status.HTTP_200_OK
 
 ######################################################################
 # L I S T   A L L   P R O D U C T S

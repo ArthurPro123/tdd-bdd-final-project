@@ -167,7 +167,7 @@ class TestProductRoutes(TestCase):
     # ADD YOUR TEST CASES HERE
     #
 
-    def test_read_a_product(self):
+    def test_get_product(self):
         """It should Read a single Product"""
         products = self._create_products(1)
         test_product = products[0]
