@@ -86,7 +86,6 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(product.price, 12.50)
         self.assertEqual(product.category, Category.SOFTWARE)
 
-
     def test_add_a_product(self):
         """It should Create a product and add it to the database"""
 
@@ -135,8 +134,8 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(found_product.price, product.price)
         self.assertEqual(found_product.available, product.available)
         self.assertEqual(found_product.category, product.category)
-        assert found_product.available == True or found_product.available == False
-        # assert found_product.category in range(0, len(Category)) == True
+        # assert found_product.available == True or found_product.available == False
+        # assert found_product.category in range(0, len(Category))
 
 
     def test_update_a_product(self):
