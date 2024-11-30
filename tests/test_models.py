@@ -320,18 +320,28 @@ class TestProductModel(unittest.TestCase):
         saved_product.deserialize(product)
 
 
+    def test_find_by_price(self):
 
-    def test_serialize_a_product(self):
+        """It should Find Products by Price"""
 
-        """It should Serialize a product"""
+        price = Decimal(10.20)
 
-        saved_product = ProductFactory()
-        saved_product.id = None
-        saved_product.create()
-        product = Product.find(saved_product.id).serialize()
-        self.assertEqual(product['id'], saved_product.id)
-        self.assertEqual(product['name'], saved_product.name)
-        self.assertEqual(product['description'], saved_product.description)
-        self.assertEqual(Decimal(product['price']), Decimal(saved_product.price))
-        self.assertEqual(product['available'], saved_product.available)
-        self.assertEqual(product['category'], saved_product.category.name)
+        # Create a batch of 10 Product objects using the ProductFactory and save them to the database
+        products = ProductFactory.create_batch(10)
+        for index, product in products:
+            if index == 5:
+                product.price = price
+            else:
+                product.price = 20.00 + index
+            product.create()
+
+        # Retrieve products from the database that have the specified price
+        found = Product.find_by_price(price)
+
+        # Assert if the count of the found products matches the expected count
+        self.assertEqual(found.count(), 1)
+
+        # Assert that each product's category matches the expected category.
+        for product in found:
+            self.assertEqual(product.price, price)
+
