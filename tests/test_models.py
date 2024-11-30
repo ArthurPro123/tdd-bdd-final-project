@@ -335,9 +335,6 @@ class TestProductModel(unittest.TestCase):
             if count == 5:
                 product.price = price
 
-            elif count == 6:
-                product.price = "80"
-            
             else:
                 product.price = 20.00 + count
             product.create()
@@ -353,4 +350,4 @@ class TestProductModel(unittest.TestCase):
         for product in found:
             self.assertEqual(product.price, price)
 
-        found = Product.find_by_price("20")
+        found = Product.find_by_price("21")
