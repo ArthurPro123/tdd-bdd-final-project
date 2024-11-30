@@ -321,7 +321,7 @@ class TestProductModel(unittest.TestCase):
 
 
 
-     def test_serialize_a_product(self):
+    def test_serialize_a_product(self):
 
         """It should Serialize a product"""
 
