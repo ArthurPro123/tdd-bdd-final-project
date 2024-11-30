@@ -328,12 +328,15 @@ class TestProductModel(unittest.TestCase):
 
         # Create a batch of 10 Product objects using the ProductFactory and save them to the database
         products = ProductFactory.create_batch(10)
-        for index, product in products:
-            if index == 5:
+
+        count = 1
+        for product in products:
+            if count == 5:
                 product.price = price
             else:
                 product.price = 20.00 + index
             product.create()
+            count += 1
 
         # Retrieve products from the database that have the specified price
         found = Product.find_by_price(price)
