@@ -294,30 +294,30 @@ class TestProductModel(unittest.TestCase):
 
         """It should Deserialize a product and raise appropiate exceptions for missing fields"""
 
-        saved_product = ProductFactory()
-        saved_product.id = None
-        saved_product.create()
+        in_db_product = ProductFactory()
+        in_db_product.id = None
+        in_db_product.create()
         product = {}
         with self.assertRaises(DataValidationError):
-            saved_product.deserialize(product)
-        product = saved_product.serialize()
-        saved_product.deserialize(product)
-        self.assertEqual(product['id'], saved_product.id)
-        self.assertEqual(product['name'], saved_product.name)
-        self.assertEqual(product['description'], saved_product.description)
-        self.assertEqual(Decimal(product['price']), Decimal(saved_product.price))
-        self.assertEqual(product['available'], saved_product.available)
-        self.assertEqual(product['category'], saved_product.category.name)
+            in_db_product.deserialize(product)
+        product = in_db_product.serialize()
+        in_db_product.deserialize(product)
+        self.assertEqual(product['id'], in_db_product.id)
+        self.assertEqual(product['name'], in_db_product.name)
+        self.assertEqual(product['description'], in_db_product.description)
+        self.assertEqual(Decimal(product['price']), Decimal(in_db_product.price))
+        self.assertEqual(product['available'], in_db_product.available)
+        self.assertEqual(product['category'], in_db_product.category.name)
         invalid_product = product.copy()
         invalid_product['available'] = 'Invalid value'
         with self.assertRaises(DataValidationError):
-            saved_product.deserialize(invalid_product)
-        saved_product.deserialize(product)
+            in_db_product.deserialize(invalid_product)
+        in_db_product.deserialize(product)
         invalid_product = product.copy()
         invalid_product['category'] = 'Invalid category'
         with self.assertRaises(DataValidationError):
-            saved_product.deserialize(invalid_product)
-        saved_product.deserialize(product)
+            in_db_product.deserialize(invalid_product)
+        in_db_product.deserialize(product)
 
 
     def test_find_by_price(self):
