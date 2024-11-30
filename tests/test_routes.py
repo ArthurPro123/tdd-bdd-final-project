@@ -208,7 +208,7 @@ class TestProductRoutes(TestCase):
         self.assertEqual(updated_product["description"], "unknown")
 
     def test_update_product_not_found(self):
-        response = self.client.put(f"{BASE_URL}/0", json={})
+        self.client.put(f"{BASE_URL}/0", json={})
 
     def test_delete_product(self):
         """It should Delete a Product"""
@@ -267,7 +267,7 @@ class TestProductRoutes(TestCase):
         """It should Query Products by availability"""
         products = self._create_products(10)
         available_products = [product for product in products if product.available is True]
-        available_count = len(available_products)        
+        available_count = len(available_products)
         # test for available
         response = self.client.get(
             BASE_URL, query_string="available=true"

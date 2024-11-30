@@ -92,6 +92,7 @@ def create_products():
     location_url = url_for("get_products", product_id=product.id, _external=True)
     return jsonify(message), status.HTTP_201_CREATED, {"Location": location_url}
 
+
 ######################################################################
 # L I S T   A L L   P R O D U C T S
 ######################################################################
@@ -126,6 +127,7 @@ def list_products():
     results = [product.serialize() for product in products]
     app.logger.info("[%s] Products returned", len(results))
     return results, status.HTTP_200_OK
+
 
 ######################################################################
 # R E A D   A   P R O D U C T
@@ -168,6 +170,7 @@ def update_products(product_id):
     product.update()
     return product.serialize(), status.HTTP_200_OK
 
+
 ######################################################################
 # D E L E T E   A   P R O D U C T
 ######################################################################
@@ -186,4 +189,3 @@ def delete_products(product_id):
         product.delete()
 
     return "", status.HTTP_204_NO_CONTENT
-
