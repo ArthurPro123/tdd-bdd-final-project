@@ -169,7 +169,6 @@ class TestProductModel(unittest.TestCase):
         self.assertEqual(products[0].description, "A new description")
         self.assertEqual(products[0].id, original_id)
 
-
     def test_update_a_product_not_saved(self):
 
         """It should fail when updating a product that was not saved to the database"""
@@ -177,7 +176,6 @@ class TestProductModel(unittest.TestCase):
         product = ProductFactory()
         product.id = None
         self.assertRaises(DataValidationError, product.update)
-
 
     def test_delete_a_product(self):
 
@@ -190,7 +188,6 @@ class TestProductModel(unittest.TestCase):
         # Remove the product from the database
         product.delete()
         self.assertEqual(len(Product.all()), 0)
-
 
     def test_list_all_products(self):
 
@@ -207,7 +204,6 @@ class TestProductModel(unittest.TestCase):
         # See if we get back 5 products
         products = Product.all()
         self.assertEqual(len(products), 5)
-
 
     def test_find_by_name(self):
 
@@ -234,7 +230,6 @@ class TestProductModel(unittest.TestCase):
         for product in found:
             self.assertEqual(product.name, name)
 
-
     def test_find_by_availability(self):
 
         """It should Find Products by Availability"""
@@ -260,7 +255,6 @@ class TestProductModel(unittest.TestCase):
         for product in found:
             self.assertEqual(product.available, available)
 
-
     def test_find_by_category(self):
 
         """It should Find Products by Category"""
@@ -285,7 +279,6 @@ class TestProductModel(unittest.TestCase):
         # Assert that each product's category matches the expected category.
         for product in found:
             self.assertEqual(product.category, category)
-
 
     def test_deserialize_a_product(self):
 
@@ -323,7 +316,6 @@ class TestProductModel(unittest.TestCase):
             in_db_product.deserialize(invalid_product)
 
         in_db_product.deserialize(product)
-
 
     def test_find_by_price(self):
 
