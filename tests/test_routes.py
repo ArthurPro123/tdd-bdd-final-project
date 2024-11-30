@@ -218,5 +218,5 @@ class TestProductRoutes(TestCase):
         # self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         # # data = response.get_json()
         # # self.assertIn("was not found", data["message"])
-        # response = self.client.put(f"{BASE_URL}/0", json={})
+        response = self.client.put(f"{BASE_URL}/0", json={})
 
