@@ -353,3 +353,4 @@ class TestProductModel(unittest.TestCase):
         for product in found:
             self.assertEqual(product.price, price)
 
+        found = Product.find_by_price("20")
