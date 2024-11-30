@@ -297,26 +297,34 @@ class TestProductModel(unittest.TestCase):
         in_db_product = ProductFactory()
         in_db_product.id = None
         in_db_product.create()
+
         product = {}
+
         with self.assertRaises(DataValidationError):
             in_db_product.deserialize(product)
+
         product = in_db_product.serialize()
         in_db_product.deserialize(product)
+
         self.assertEqual(product['id'], in_db_product.id)
         self.assertEqual(product['name'], in_db_product.name)
         self.assertEqual(product['description'], in_db_product.description)
         self.assertEqual(Decimal(product['price']), Decimal(in_db_product.price))
         self.assertEqual(product['available'], in_db_product.available)
         self.assertEqual(product['category'], in_db_product.category.name)
+
         invalid_product = product.copy()
         invalid_product['available'] = 'Invalid value'
         with self.assertRaises(DataValidationError):
             in_db_product.deserialize(invalid_product)
+
         in_db_product.deserialize(product)
         invalid_product = product.copy()
         invalid_product['category'] = 'Invalid category'
+
         with self.assertRaises(DataValidationError):
             in_db_product.deserialize(invalid_product)
+
         in_db_product.deserialize(product)
 
 
